@@ -108,5 +108,25 @@ public class ProjectDAO {
 		}
 	}//selectSub3()
 	
-	
+	//수강신청입력(sub2.jsp)
+	public void insertSub2(Sub2DTO dto) {
+		conn = getConn();
+		String sql = "insert into tbl_class_202201 values(?, ?, ?, ?, ?)";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, dto.getResist_month());
+			ps.setString(2, dto.getC_no());
+			ps.setString(3, dto.getClass_area());
+			ps.setInt(4, dto.getTuition());
+			ps.setString(5, dto.getClass_name());
+			ps.executeUpdate(); // insert, delete, update ▶ ps.executeUpdate(); //select ▶ ps.executeQuery();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("insertSub2() Exception!!!");
+		}finally {
+			dbClose();
+		}
+	}//insertSub2()
 } //class
