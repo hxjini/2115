@@ -84,12 +84,12 @@ public class ProjectDAO {
 	
 	
 	//회원정보조회(sub3.jsp)
-	public void selectSub3() {
+	public List<Sub3DTO> selectSub3() {
 		conn = getConn();
-		String sql = "";
-		sql += "";
-		sql += "";
-		sql += "";
+		String sql = "select class.resist_month, member.c_no, member.c_name, teacher.class_name, class.class_area, class.tuition, member.grade ";
+		sql += "from tbl_teacher_202201 teacher, tbl_member_202201 member, tbl_class_202201 class ";
+		sql += "where teacher.teacher_code = class.teacher_code and member.c_no = class.c_no ";
+		sql += "order by class.c_no asc";
 		List<Sub3DTO> list = new ArrayList<Sub3DTO>();
 				
 		try {
@@ -97,16 +97,60 @@ public class ProjectDAO {
 			rs = ps.executeQuery();
 			
 			while(rs.next()) {
-				Sub3DTO dto = new Sub3DTO();
-				dto.setResist_month(rs.getString(1));
-				dto.setC_no(rs.getString(2));
+				String resist_month = rs.getString(1);
+				resist_month = resist_month.substring(0, 4) + "년" + resist_month.substring(4) + "월";
+				dto.setResist_month(resist_month);
 				
+				dto.setC_no(rs.getString(2));
+				dto.setC_name(rs.getString(3));
+				dto.setClass_name(rs.getString(4));
+				dto.setClass_area(rs.getString(5));
+				dto.setTuition(6);
+				
+				list.add(dto);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			
+			System.out.println("selectSub3() Exception!!!");
+		} finally {
+			dbClose();
 		}
+		
+		return list;
 	}//selectSub3()
+
+	//강사매출현황(sub4.jsp)
+	public List<Sub4DTO> selectSub4(){
+		conn = getConn();
+		String sql = "";
+		sql += "";
+		sql += "";
+		sql += "";
+		sql += "";
+		List<Sub4DTO> list = new ArrayList<Sub4DTO>();
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				Sub4DTO dto = new Sub4DTO();
+				dto.setTeacher_code(rs.getString(1));
+				dto.setClass_name(rs.getString(2));
+				dto.setTeacher_name(rs.getString(3));
+				dto.setTotal(rs.getInt(4));
+				
+				list.add(dto);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("selectSub4() Exception!!!");
+		} finally {
+			dbClose();
+		}
+		
+		return list;
+	}//selectSub4()
 	
 	//수강신청입력(sub2.jsp)
 	public void insertSub2(Sub2DTO dto) {
