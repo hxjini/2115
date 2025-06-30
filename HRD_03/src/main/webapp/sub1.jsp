@@ -31,7 +31,11 @@ List<Sub1DTO> list = dao.selectSub1();
 				
 				<% for(Sub1DTO dto : list){%>
 					<tr align="center">
-						<td><%= dto.getTeacher_code() %></td>
+						<td><a href="updateForm.jsp?teacher_code=<%= dto.getTeacher_code() %>"><%= dto.getTeacher_code() %></a></td>
+						<td>
+							<input type="button" value="수정" onclick="location.href='updateForm.jsp?teacher_code=<%= dto.getTeacher_code() %>'">
+						</td>
+						
 						<td><%= dto.getTeacher_name() %></td>
 						<td><%= dto.getClass_name() %></td>
 						
@@ -42,6 +46,11 @@ List<Sub1DTO> list = dao.selectSub1();
 						<td><%= df.format(class_price)%></td>
 						
 						<td><%= dto.getTeach_resist_date() %></td>
+						
+						<td><a href="#" onclick="fnSub1Delete('<%= dto.getTeacher_code() %>')">삭제</a></td>
+						<td>
+							<input type="button" value="삭제" onclick="fnSub1Delete('<%= dto.getTeacher_code() %>')" />
+						</td>
 					</tr>
 				<%} %>
 			</table>
