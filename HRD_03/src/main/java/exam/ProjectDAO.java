@@ -222,4 +222,29 @@ public class ProjectDAO {
 		
 		return dto;
 	}//selectOneSub1()
+
+	//강사정보 수정
+	public void updateSub1(Sub1DTO dto) {
+		conn = getConn();
+		String sql = "update tbl_teacher_202201 ";
+		sql += "set teacher_name = ?, class_name = ?, class_price =?, teach_resist_date = ? ";
+		sql += "where teacher_code = ?";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, dto.getTeacher_name());
+			ps.setString(2, dto.getClass_name());
+			ps.setInt(3, dto.getClass_price());
+			ps.setString(4, dto.getTeach_resist_date());
+			ps.setString(5, dto.getTeacher_code());
+			
+			ps.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("updateSub1() Exception!!!");
+		} finally {
+			dbClose();
+		}
+	}//updateSub1()
 } //class
