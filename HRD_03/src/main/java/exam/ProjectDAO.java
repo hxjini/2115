@@ -148,7 +148,7 @@ public class ProjectDAO {
 		}
 	}//deleteSub1()
 
-	//강사코드 조회 (sub1.jsp)
+	//수정할 강사코드 조회 (sub1.jsp)
 	public Sub1DTO selectOneSub1(String teacher_code) {
 		conn = getConn();
 		String sql = "select * from tbl_teacher_202201 where teacher_code =?";
@@ -159,7 +159,14 @@ public class ProjectDAO {
 			ps.setString(1, teacher_code);
 			rs = ps.executeQuery();
 			
-			
+			if(rs.next()) {
+				dto = new Sub1DTO();
+				dto.setTeacher_code(rs.getString(1)); // dto.setTeacher_code(rs.getString("teacher_code"));
+				dto.setTeacher_name(rs.getString(2));
+				dto.setClass_name(rs.getString(3));
+				dto.setClass_price(rs.getInt(4));
+				dto.setTeach_resist_date(rs.getString(5));
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("selectOneSub1() Exception!!!");
