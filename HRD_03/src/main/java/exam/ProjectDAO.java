@@ -97,6 +97,7 @@ public class ProjectDAO {
 			rs = ps.executeQuery();
 			
 			while(rs.next()) {
+				Sub3DTO dto = new Sub3DTO();
 				String resist_month = rs.getString(1);
 				resist_month = resist_month.substring(0, 4) + "년" + resist_month.substring(4) + "월";
 				dto.setResist_month(resist_month);
