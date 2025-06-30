@@ -105,8 +105,9 @@ public class ProjectDAO {
 				dto.setC_name(rs.getString(3));
 				dto.setClass_name(rs.getString(4));
 				dto.setClass_area(rs.getString(5));
-				dto.setTuition(6);
-				
+				dto.setTuition(rs.getInt(6));
+				dto.setGrade(rs.getString(7));
+
 				list.add(dto);
 			}
 		} catch (Exception e) {
