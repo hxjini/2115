@@ -80,4 +80,14 @@ function fnSub2FormReset(){
 	alert("정보를 지우고 처음부터 다시 입력합니다!");
 } //fnSub2FormReset()
 
-
+//강사조회 삭제
+function fnSub1Delete(teacher_code){
+	//alert("강사코드 : " + teacher_code);
+	if(confirm("정말 삭제하시겠습니까?")){
+		location.href = "sub1Action.jsp?teacher_code=" + teacher_code;
+		alert("삭제되었습니다!");
+	} else{
+		alert("취소되었습니다!");
+		return false;
+	}
+}//fnSub1Delete()
