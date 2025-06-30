@@ -23,17 +23,28 @@ List<Sub3DTO> list = dao.selectSub3();
 			<table border="1" style="width: 70%">
 				<tr>
 					<th>수강월</th>
-					<th>수강월</th>
-					<th>수강월</th>
-					<th>수강월</th>
-					<th>수강월</th>
-					<th>수강월</th>
-					<th>수강월</th>
+					<th>회원번호</th>
+					<th>회원명</th>
+					<th>강의명</th>
+					<th>강의장소</th>
+					<th>수강료</th>
+					<th>등급</th>
 				</tr>
 				
 				<% for(Sub3DTO dto : list) { %>
-					<tr>
-						<td><%= dt %></td>
+					<tr align="center">
+						<td><%= dto.getResist_month() %></td>
+						<td><%= dto.getC_no() %></td>
+						<td><%= dto.getC_name() %></td>
+						<td><%= dto.getClass_name() %></td>
+						<td><%= dto.getClass_area() %></td>
+						
+						<%
+							int tution = dto.getTuition();
+						DecimalFormat df = new DecimalFormat("￦#,##0"); //￦ : ㄹ + 한자
+						%>
+						<td><%= df.format(tution) %></td>
+						<td><%= dto.getGrade() %></td>
 					</tr>
 				<% } %>
 			</table>
