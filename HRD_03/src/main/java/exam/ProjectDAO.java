@@ -129,4 +129,44 @@ public class ProjectDAO {
 			dbClose();
 		}
 	}//insertSub2()
+
+	//강사조회 삭제(sub1.jsp)
+	public void deleteSub1(String teacher_code) {
+		conn = getConn();
+		String sql = "delete from tbl_teacher_202201 where teacher_code = ?";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, teacher_code);
+			ps.executeUpdate();
+			//System.out.println("삭제");
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("deleteSub1() Exception!!!");
+		} finally {
+			dbClose();
+		}
+	}//deleteSub1()
+
+	//강사코드 조회 (sub1.jsp)
+	public Sub1DTO selectOneSub1(String teacher_code) {
+		conn = getConn();
+		String sql = "select * from tbl_teacher_202201 where teacher_code =?";
+		Sub1DTO dto = null;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, teacher_code);
+			rs = ps.executeQuery();
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("selectOneSub1() Exception!!!");
+		}finally {
+			dbClose();
+		}
+		
+		return dto;
+	}//selectOneSub1()
 } //class
