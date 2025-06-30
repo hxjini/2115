@@ -91,3 +91,24 @@ function fnSub1Delete(teacher_code){
 		return false;
 	}
 }//fnSub1Delete()
+
+//수정화면 유효성 검사
+function fnUpdateCheck(){
+	var tearcher_name = "document.sub1UpdateForm.teacher_name.value";
+	var class_name = "document.sub1UpdateForm.class_name.value";
+	var class_price = "document.sub1UpdateForm.class_price.value";
+	var teach_resist_date = "document.sub1UpdateForm.teach_resist_date.value";
+	
+	//유효성 검사 코드 구현
+	
+	alert("강사 정보가 수정되었습니다!");
+	document.sub1UpdateForm.submit();
+}//updateCheck()
+
+
+//수정화면 초기화
+function fnUpdateReset(){
+	alert("강사 정보가 초기화 되었습니다!");
+	document.sub1UpdateForm.reset();
+}//fnUpdateReset()
+
