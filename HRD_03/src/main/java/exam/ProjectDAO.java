@@ -122,11 +122,11 @@ public class ProjectDAO {
 	//강사매출현황(sub4.jsp)
 	public List<Sub4DTO> selectSub4(){
 		conn = getConn();
-		String sql = "";
-		sql += "";
-		sql += "";
-		sql += "";
-		sql += "";
+		String sql = "select class.teacher_code, teacher.class_name, teacher.teacher_name, sum(class.tuition) as total ";
+		sql += "from tbl_teacher_202201 teacher, tbl_class_202201 class ";
+		sql += "where teacher.teacher_code = class.teacher_code ";
+		sql += "group by class.teacher_code, teacher.class_name, teacher.teacher_name ";
+		sql += "order by class.teacher_code asc";
 		List<Sub4DTO> list = new ArrayList<Sub4DTO>();
 		
 		try {
