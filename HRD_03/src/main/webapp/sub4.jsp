@@ -34,13 +34,13 @@ List<Sub4DTO> list = dao.selectSub4();
 						<td align="center"><%=dto.getTeacher_code() %></td>
 						<td align="center"><%=dto.getClass_name() %></td>
 						<td align="center"><%=dto.getTeacher_name() %></td>
-					</tr>
 					
 					<%
 						int total = dto.getTotal();
 						DecimalFormat df = new DecimalFormat("￦#,##0");
 					%>
 					<td align="right"><%=df.format(total) %></td>
+					</tr>
 				<% } %>
 			</table>
 		</div>
